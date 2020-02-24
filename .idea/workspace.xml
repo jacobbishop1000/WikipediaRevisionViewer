@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83690c08-8eba-43ee-bccf-a844677928b5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/Edit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/interfaces/WikipediaPageViewer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/utils/RequestUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/viewers/ChangelogViewer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/viewers/EditorListViewer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Student.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/domain/WikipediaPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/WikipediaPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/ParseUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/ParseUtils.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,6 +34,13 @@
       <set>
         <option value="C:\Users\maxza\Documents\CS222 Projects\WikipediaRevisionViewer\.idea" />
       </set>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
     </option>
   </component>
   <component name="ProjectId" id="1Y2ZnYVLLgAK6L65P2XNVFIEAbx" />
@@ -92,12 +95,33 @@
       <option name="project" value="LOCAL" />
       <updated>1582144956813</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Testing pull requests">
+      <created>1582146862588</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1582146862588</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Empty Commit" />
     <MESSAGE value="Initial Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial Commit" />
+    <MESSAGE value="Testing pull requests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Testing pull requests" />
   </component>
 </project>
