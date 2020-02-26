@@ -1,15 +1,10 @@
 package utils;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import domain.Edit;
 import domain.WikipediaPage;
 import exceptions.ParameterIsNotJsonStringException;
-
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class ParseUtils {
@@ -31,14 +26,16 @@ public class ParseUtils {
         JsonObject pageidObject = pagesObject.getAsJsonObject("19651298"); //pageid placeholder
         var pageTitle = pageidObject.getAsJsonPrimitive("title").getAsString(); //name should be changed
         var pageID = pageidObject.getAsJsonPrimitive("pageid").getAsInt(); //last should be changed
-        JsonObject revisionsObject = pageidObject.getAsJsonObject("revisions");
-        var revisions = revisionsObject.getAsJsonPrimitive("revisions").getAsString();
+        var revisionsObject = pageidObject.getAsJsonArray("revisions");
 
         List<Edit> pageEdits = new ArrayList<>();
-        Gson tempGson = new Gson();
-        while (revisions != null){
-            var pageEdit = tempGson.fromJson(revisionsObject, Edit.class);
-            pageEdits.add(pageEdit);
+        for (int i = 0; i<revisionsObject.size(); i++){
+            JsonObject object = revisionsObject.get(i).getAsJsonObject();
+            String user = object.get("user").getAsString();
+            String timeStamp = object.get("timestamp").getAsString();
+            Gson tempGson = new Gson();
+            Edit edit = tempGson.fromJson(object, Edit.class);
+            pageEdits.add(edit);
         }
         return new WikipediaPage(pageTitle, pageID, pageEdits);
     }

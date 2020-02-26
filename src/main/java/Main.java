@@ -13,12 +13,12 @@ public class Main {
 
     public static void main(String[] args) {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
-            System.out.println("Welcome to Wikipedia Revision Viewer! Type 'q' at any time to quit.");
+            System.out.println("Welcome to Wikipedia Revision Viewer!");
             while (true){
                 System.out.println("Please enter the name of the article you want to view or type 'q' to quit: ");
                 String articleName = br.readLine();
-                if (articleName == "q"){
-                    break; //Doesn't work
+                if (articleName.contentEquals("q")){
+                    break;
                 }
                 URL url = new URL("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles="
                         + articleName
@@ -34,7 +34,7 @@ public class Main {
                 System.out.println("1) Changelog Viewer");
                 System.out.println("2) Editor List Viewer\n");
                 String viewerChoice = br.readLine().toLowerCase();
-                if(viewerChoice == "q"){
+                if(viewerChoice.contentEquals("q")){
                     break;
                 }else if (viewerChoice == "1" || viewerChoice == "changelog viewer" || viewerChoice == "changelog"){
                     //stuff (need to finish ChangeLogViewer class!)
