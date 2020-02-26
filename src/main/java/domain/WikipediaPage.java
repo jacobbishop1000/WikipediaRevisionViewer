@@ -1,16 +1,24 @@
 package domain;
 
-import java.util.HashMap;
+import java.util.List;
 
 public class WikipediaPage {
 
     private String pageTitle;
     private int pageId;
-    private List<Edit> edits; //Figure out list type.
+    private List<Edit> pageEdits; //ArrayList > LinkedList
 
     public WikipediaPage(String aPageTitle, int aPageId, List<Edit> anEditList){
         pageTitle = aPageTitle;
         pageId = aPageId;
-        edits = anEditList;
+        pageEdits = anEditList;
+    }
+
+    public String getPageTitle() {
+        return pageTitle;
+    }
+
+    public int getPageId() {
+        return pageId;
     }
 }

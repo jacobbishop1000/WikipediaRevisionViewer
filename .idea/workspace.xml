@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="83690c08-8eba-43ee-bccf-a844677928b5" name="Default Changelist" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <list default="true" id="83690c08-8eba-43ee-bccf-a844677928b5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/ParseUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/ParseUtils.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,9 +33,21 @@
       </set>
     </option>
   </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="1Y2ZnYVLLgAK6L65P2XNVFIEAbx" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -45,17 +60,19 @@
       <recent name="domain" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="WikipediaRevisionViewer" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
       <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
+        <item itemvalue="Application.Main" />
       </list>
-    </option>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -82,20 +99,59 @@
       <option name="project" value="LOCAL" />
       <updated>1582144956813</updated>
     </task>
-    <task id="LOCAL-00003" summary="Added Base Files for Project">
-      <created>1582146551629</created>
+    <task id="LOCAL-00003" summary="Testing pull requests">
+      <created>1582146862588</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1582146551629</updated>
+      <updated>1582146862588</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added functionality for Main(), but need to complete viewer classes as it is reliant on those.&#10;Also found how to connect to Wikipedia (I think? Need to test.) Please take a look to see what I've been up to.&#10;Other small changes made as I saw improvements.&#10;To my knowledge I haven't broken anything.">
+      <created>1582573468006</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1582573468006</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Empty Commit" />
     <MESSAGE value="Initial Commit" />
-    <MESSAGE value="Added Base Files for Project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Base Files for Project" />
+    <MESSAGE value="Testing pull requests" />
+    <MESSAGE value="Added functionality for Main(), but need to complete viewer classes as it is reliant on those.&#10;Also found how to connect to Wikipedia (I think? Need to test.) Please take a look to see what I've been up to.&#10;Other small changes made as I saw improvements.&#10;To my knowledge I haven't broken anything." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added functionality for Main(), but need to complete viewer classes as it is reliant on those.&#10;Also found how to connect to Wikipedia (I think? Need to test.) Please take a look to see what I've been up to.&#10;Other small changes made as I saw improvements.&#10;To my knowledge I haven't broken anything." />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1237" height="284" key="GridCell.Tab.0.bottom" timestamp="1582739514308">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="284" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582739514308" />
+    <state width="1237" height="284" key="GridCell.Tab.0.center" timestamp="1582739514307">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="284" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1582739514307" />
+    <state width="1237" height="284" key="GridCell.Tab.0.left" timestamp="1582739514307">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="284" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1582739514307" />
+    <state width="1237" height="284" key="GridCell.Tab.0.right" timestamp="1582739514308">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="284" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1582739514308" />
   </component>
 </project>
