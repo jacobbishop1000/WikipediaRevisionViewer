@@ -13,4 +13,12 @@ public class WikipediaPage {
         pageId = aPageId;
         pageEdits = anEditList;
     }
+
+    public String getPageTitle() {
+        return pageTitle;
+    }
+
+    public int getPageId() {
+        return pageId;
+    }
 }

@@ -23,10 +23,11 @@ public class ParseUtils {
         JsonObject rootObject = rootElement.getAsJsonObject();
         JsonObject queryObject = rootObject.getAsJsonObject("query");
         JsonObject pagesObject = queryObject.getAsJsonObject("pages");
-        JsonObject pageidObject = pagesObject.getAsJsonObject("19651298"); //pageid placeholder
-        var pageTitle = pageidObject.getAsJsonPrimitive("title").getAsString(); //name should be changed
-        var pageID = pageidObject.getAsJsonPrimitive("pageid").getAsInt(); //last should be changed
-        var revisionsObject = pageidObject.getAsJsonArray("revisions");
+        JsonObject pageidObject = pagesObject.getAsJsonObject(getPageId(pagesObject));
+        var pageTitle = pageidObject.getAsJsonPrimitive("title").getAsString();
+        var pageID = pageidObject.getAsJsonPrimitive("pageid").getAsInt();
+        JsonObject revisionsObject = pageidObject.getAsJsonObject("revisions");
+        var revisions = revisionsObject.getAsJsonPrimitive("revisions").getAsString();
 
         List<Edit> pageEdits = new ArrayList<>();
         for (int i = 0; i<revisionsObject.size(); i++){
@@ -39,4 +40,17 @@ public class ParseUtils {
         }
         return new WikipediaPage(pageTitle, pageID, pageEdits);
     }
+
+    private static String getPageId(JsonObject jObject) {
+        String jObjectString = jObject.getAsString();
+        String pageId = "";
+        for (int i = 3; i < jObjectString.length(); i++) {
+            if (jObjectString.charAt(i) != '"') {
+                pageId += jObjectString.charAt(i);
+            }
+        }
+        return pageId;
+    }
+
+
 }
