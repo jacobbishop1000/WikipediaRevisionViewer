@@ -1,3 +1,4 @@
+import domain.Editor;
 import domain.WikipediaPage;
 import exceptions.NetworkConnectionFailedException;
 import exceptions.ParameterIsNotJsonStringException;
@@ -7,7 +8,7 @@ import utils.RequestUtils;
 import java.io.*;
 import java.net.*;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -49,7 +50,21 @@ public class Main {
                         System.out.println("Date edited: " + page.getPageEditors().get(i).getTimestamp());
                     }
                 }else if (viewerChoice.contentEquals("2") || viewerChoice.contentEquals("editor list viewer") || viewerChoice.contentEquals("editor list")){
-                    //stuff (need to finish EditorListViewer class!)
+                    List<Editor> editors = page.getPageEditors();
+                    while (editors.size() > 0){
+                        Editor maxEditor = editors.get(0);
+                        int maxEditorIndex = editors.indexOf(maxEditor);
+                        for (int i = 1; i < editors.size(); i++){
+                            if (editors.get(i).getNumEdits() > maxEditor.getNumEdits()){
+                                maxEditor = editors.get(i);
+                                maxEditorIndex = editors.indexOf(maxEditor);
+                            }
+                            System.out.println("********************");
+                            System.out.println("User: " + editors.get(i).getUser());
+                            System.out.println("Number of Edits: " + editors.get(i).getNumEdits());
+                            editors.remove(maxEditorIndex);
+                        }
+                    }
                 }else{
                     System.out.println("Error: not a valid choice.");
                 }

@@ -8,6 +8,7 @@ public class Editor {
 
     private String user;
     private Date timestamp;
+    private int numEdits;
 
     public Editor(String aUser, String aTimestamp) throws ParseException {
         user = aUser;
@@ -27,6 +28,14 @@ public class Editor {
 
     public Date getTimestamp() {
         return timestamp;
+    }
+
+    public int getNumEdits() {
+        return numEdits;
+    }
+
+    public void setNumEdits(int numEdits) {
+        this.numEdits = numEdits;
     }
 
     @Override
