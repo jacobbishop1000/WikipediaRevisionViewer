@@ -22,7 +22,7 @@ public class Main {
                 }
                 URL url = new URL("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles="
                         + articleName
-                        +"&rvprop=timestamp|user&rvlimit=30&redirects");
+                        +"&rvprop=timestamp|user&rvlimit=30&redirects"); //This needs to throw a PageNotFoundException
                 URLConnection connection = url.openConnection(); //This needs to throw a NetworkConnectionFailedException
                 connection.setRequestProperty("User-Agent",
                         "Revision Tracker/0.1 (http://www.cs.bsu.edu/; jbishop@bsu.edu)");
@@ -30,6 +30,7 @@ public class Main {
                 Scanner scanner = new Scanner(in);
                 String result = scanner.nextLine(); //Originally scanner.next()
                 WikipediaPage page = ParseUtils.parseJsonToWikipediaPageManual(result);
+                System.out.println(page);
                 System.out.println("What format do you want your page info to come back in?\n");
                 System.out.println("1) Changelog Viewer");
                 System.out.println("2) Editor List Viewer\n");
@@ -46,7 +47,7 @@ public class Main {
             }
         } catch (IOException e) {
             System.out.println("IO Exception");
-        }catch (ParameterIsNotJsonStringException e){
+        } catch (ParameterIsNotJsonStringException e){
             System.out.println("Parameter Is Not Json String Exception");
         }
     }

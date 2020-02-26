@@ -21,4 +21,17 @@ public class WikipediaPage {
     public int getPageId() {
         return pageId;
     }
+
+    public List<Edit> getPageEdits() {
+        return pageEdits;
+    }
+
+    @Override
+    public String toString() {
+        return "WikipediaPage{" +
+                "pageTitle='" + pageTitle + '\'' +
+                ", pageId=" + pageId +
+                ", pageEdits=" + pageEdits +
+                '}';
+    }
 }

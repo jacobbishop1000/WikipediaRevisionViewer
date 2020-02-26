@@ -20,4 +20,13 @@ public class Edit {
         Date date = primitiveDate.parse(dateInString);
         return date;
     }
+
+    public String getUser() {
+        return user;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
 }
