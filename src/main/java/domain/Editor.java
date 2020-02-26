@@ -4,12 +4,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Edit {
+public class Editor {
 
     private String user;
     private Date timestamp;
 
-    public Edit(String aUser, String aTimestamp) throws ParseException {
+    public Editor(String aUser, String aTimestamp) throws ParseException {
         user = aUser;
         timestamp = parseDate(aTimestamp);
     }
@@ -29,4 +29,11 @@ public class Edit {
         return timestamp;
     }
 
+    @Override
+    public String toString() {
+        return "Editor{" +
+                "user='" + user + '\'' +
+                ", timestamp=" + timestamp +
+                '}';
+    }
 }
