@@ -18,23 +18,21 @@ public class Main {
                 System.out.println("Please enter the name of the article you want to view or type 'q' to quit: ");
                 String articleName = br.readLine();
                 if (articleName == "q"){
-                    break;
+                    break; //Doesn't work
                 }
                 URL url = new URL("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles="
                         + articleName
-                        +"&rvprop=timestamp|user&rvlimit=4&redirects");
+                        +"&rvprop=timestamp|user&rvlimit=30&redirects");
                 URLConnection connection = url.openConnection(); //This needs to throw a NetworkConnectionFailedException
                 connection.setRequestProperty("User-Agent",
                         "Revision Tracker/0.1 (http://www.cs.bsu.edu/; jbishop@bsu.edu)");
                 InputStream in = connection.getInputStream();
                 Scanner scanner = new Scanner(in);
-                String result = scanner.next();
-                WikipediaPage page = ParseUtils.parseJsonToWikipediaPageDirect(result);
-                System.out.println("What format do you want your page info to come back in?");
-                System.out.println();
+                String result = scanner.nextLine(); //Originally scanner.next()
+                WikipediaPage page = ParseUtils.parseJsonToWikipediaPageManual(result);
+                System.out.println("What format do you want your page info to come back in?\n");
                 System.out.println("1) Changelog Viewer");
-                System.out.println("2) Editor List Viewer");
-                System.out.println();
+                System.out.println("2) Editor List Viewer\n");
                 String viewerChoice = br.readLine().toLowerCase();
                 if(viewerChoice == "q"){
                     break;
