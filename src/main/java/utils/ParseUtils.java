@@ -6,13 +6,16 @@ import exceptions.ParameterIsNotJsonStringException;
 
 public class ParseUtils {
 
-    public static WikipediaPage parseJsonToWikipediaPageDirect(String jsonString) throws ParameterIsNotJsonStringException {
+    public static WikipediaPage parseJsonToWikipediaPageDirect(String jsonString) throws ParameterIsNotJsonStringException{
         if (!jsonString.startsWith("{")){
             throw new ParameterIsNotJsonStringException();
         }
         Gson tempGson = new Gson();
-        WikipediaPage wikiPage = tempGson.fromJson(jsonString, WikipediaPage.class);
-        return wikiPage;
+        return tempGson.fromJson(jsonString, WikipediaPage.class);
+    }
+
+    public static WikipediaPage parseJsonToWikipediaPageManual(){ //What exception does this throw?
+        return null;
     }
 
 }
