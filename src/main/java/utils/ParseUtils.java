@@ -2,6 +2,7 @@ package utils;
 
 import com.google.gson.*;
 import domain.Edit;
+import domain.Redirect;
 import domain.WikipediaPage;
 import exceptions.ParameterIsNotJsonStringException;
 import java.util.ArrayList;
@@ -36,6 +37,13 @@ public class ParseUtils {
             Gson tempGson = new Gson();
             Edit edit = tempGson.fromJson(object, Edit.class);
             pageEdits.add(edit);
+        }
+        if(queryObject.keySet().contains("redirects")){
+            JsonArray redirectsArray = queryObject.getAsJsonArray("redirects");
+            JsonObject redirectsObject = redirectsArray.get(0).getAsJsonObject();
+            Gson tempGson = new Gson();
+            Redirect pageRedirect = tempGson.fromJson(redirectsObject, Redirect.class);
+            return new WikipediaPage(pageTitle, pageID, pageEdits, pageRedirect);
         }
         return new WikipediaPage(pageTitle, pageID, pageEdits);
     }

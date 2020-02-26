@@ -30,7 +30,7 @@ public class Main {
                 Scanner scanner = new Scanner(in);
                 String result = scanner.nextLine(); //Originally scanner.next()
                 WikipediaPage page = ParseUtils.parseJsonToWikipediaPageManual(result);
-                System.out.println(page);
+                System.out.println(page.toString());
                 System.out.println("What format do you want your page info to come back in?\n");
                 System.out.println("1) Changelog Viewer");
                 System.out.println("2) Editor List Viewer\n");
