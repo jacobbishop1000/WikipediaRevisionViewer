@@ -2,6 +2,7 @@ package utils;
 
 import com.google.gson.*;
 import domain.Edit;
+import domain.Redirect;
 import domain.WikipediaPage;
 import exceptions.ParameterIsNotJsonStringException;
 import java.util.ArrayList;
@@ -23,34 +24,27 @@ public class ParseUtils {
         JsonObject rootObject = rootElement.getAsJsonObject();
         JsonObject queryObject = rootObject.getAsJsonObject("query");
         JsonObject pagesObject = queryObject.getAsJsonObject("pages");
-        JsonObject pageidObject = pagesObject.getAsJsonObject(getPageId(pagesObject));
-        var pageTitle = pageidObject.getAsJsonPrimitive("title").getAsString();
+        int length = pagesObject.keySet().toString().length();
+        String pageIdObjectName = pagesObject.keySet().toString().substring(1, length - 1);
+        JsonObject pageidObject = pagesObject.getAsJsonObject(pageIdObjectName);
         var pageID = pageidObject.getAsJsonPrimitive("pageid").getAsInt();
-        JsonObject revisionsObject = pageidObject.getAsJsonObject("revisions");
-        var revisions = revisionsObject.getAsJsonPrimitive("revisions").getAsString();
+        var pageTitle = pageidObject.getAsJsonPrimitive("title").getAsString();
+        JsonArray revisionsObject = pageidObject.getAsJsonArray("revisions");
 
         List<Edit> pageEdits = new ArrayList<>();
         for (int i = 0; i<revisionsObject.size(); i++){
             JsonObject object = revisionsObject.get(i).getAsJsonObject();
-            String user = object.get("user").getAsString();
-            String timeStamp = object.get("timestamp").getAsString();
             Gson tempGson = new Gson();
             Edit edit = tempGson.fromJson(object, Edit.class);
             pageEdits.add(edit);
         }
+        if(queryObject.keySet().contains("redirects")){
+            JsonArray redirectsArray = queryObject.getAsJsonArray("redirects");
+            JsonObject redirectsObject = redirectsArray.get(0).getAsJsonObject();
+            Gson tempGson = new Gson();
+            Redirect pageRedirect = tempGson.fromJson(redirectsObject, Redirect.class);
+            return new WikipediaPage(pageTitle, pageID, pageEdits, pageRedirect);
+        }
         return new WikipediaPage(pageTitle, pageID, pageEdits);
     }
-
-    private static String getPageId(JsonObject jObject) {
-        String jObjectString = jObject.getAsString();
-        String pageId = "";
-        for (int i = 3; i < jObjectString.length(); i++) {
-            if (jObjectString.charAt(i) != '"') {
-                pageId += jObjectString.charAt(i);
-            }
-        }
-        return pageId;
-    }
-
-
 }
