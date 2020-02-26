@@ -6,19 +6,19 @@ public class WikipediaPage {
 
     private String pageTitle;
     private int pageId;
-    private List<Edit> pageEdits; //ArrayList > LinkedList
+    private List<Editor> pageEditors; //ArrayList > LinkedList
     private Redirect redirect;
 
-    public WikipediaPage(String aPageTitle, int aPageId, List<Edit> anEditList){
+    public WikipediaPage(String aPageTitle, int aPageId, List<Editor> anEditorList){
         pageTitle = aPageTitle;
         pageId = aPageId;
-        pageEdits = anEditList;
+        pageEditors = anEditorList;
     }
 
-    public WikipediaPage(String aPageTitle, int aPageId, List<Edit> anEditList, Redirect aRedirect){
+    public WikipediaPage(String aPageTitle, int aPageId, List<Editor> anEditorList, Redirect aRedirect){
         pageTitle = aPageTitle;
         pageId = aPageId;
-        pageEdits = anEditList;
+        pageEditors = anEditorList;
         redirect = aRedirect;
     }
 
@@ -30,8 +30,8 @@ public class WikipediaPage {
         return pageId;
     }
 
-    public List<Edit> getPageEdits() {
-        return pageEdits;
+    public List<Editor> getPageEditors() {
+        return pageEditors;
     }
 
     public Redirect getRedirect() {
@@ -43,7 +43,7 @@ public class WikipediaPage {
         return "WikipediaPage{" +
                 "pageTitle='" + pageTitle + '\'' +
                 ", pageId=" + pageId +
-                ", pageEdits=" + pageEdits +
+                ", pageEditors=" + pageEditors +
                 ", redirect=" + redirect +
                 '}';
     }

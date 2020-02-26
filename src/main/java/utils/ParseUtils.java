@@ -1,7 +1,7 @@
 package utils;
 
 import com.google.gson.*;
-import domain.Edit;
+import domain.Editor;
 import domain.Redirect;
 import domain.WikipediaPage;
 import exceptions.ParameterIsNotJsonStringException;
@@ -31,20 +31,20 @@ public class ParseUtils {
         var pageTitle = pageidObject.getAsJsonPrimitive("title").getAsString();
         JsonArray revisionsObject = pageidObject.getAsJsonArray("revisions");
 
-        List<Edit> pageEdits = new ArrayList<>();
+        List<Editor> pageEditors = new ArrayList<>();
         for (int i = 0; i<revisionsObject.size(); i++){
             JsonObject object = revisionsObject.get(i).getAsJsonObject();
             Gson tempGson = new Gson();
-            Edit edit = tempGson.fromJson(object, Edit.class);
-            pageEdits.add(edit);
+            Editor editor = tempGson.fromJson(object, Editor.class);
+            pageEditors.add(editor);
         }
         if(queryObject.keySet().contains("redirects")){
             JsonArray redirectsArray = queryObject.getAsJsonArray("redirects");
             JsonObject redirectsObject = redirectsArray.get(0).getAsJsonObject();
             Gson tempGson = new Gson();
             Redirect pageRedirect = tempGson.fromJson(redirectsObject, Redirect.class);
-            return new WikipediaPage(pageTitle, pageID, pageEdits, pageRedirect);
+            return new WikipediaPage(pageTitle, pageID, pageEditors, pageRedirect);
         }
-        return new WikipediaPage(pageTitle, pageID, pageEdits);
+        return new WikipediaPage(pageTitle, pageID, pageEditors);
     }
 }
