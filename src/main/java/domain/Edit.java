@@ -7,7 +7,7 @@ import java.util.Date;
 public class Edit {
 
     private String user;
-    private Date timestamp; //Figure this out.
+    private Date timestamp;
 
     public Edit(String aUser, String aTimestamp) throws ParseException {
         user = aUser;
