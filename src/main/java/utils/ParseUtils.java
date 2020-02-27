@@ -36,7 +36,8 @@ public class ParseUtils {
             JsonObject object = revisionsObject.get(i).getAsJsonObject();
             Gson tempGson = new Gson();
             Editor editor = tempGson.fromJson(object, Editor.class);
-            pageEditors.add(editor);
+            if(pageEditors.add(editor);
+
         }
         if(queryObject.keySet().contains("redirects")){
             JsonArray redirectsArray = queryObject.getAsJsonArray("redirects");
