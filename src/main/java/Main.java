@@ -8,6 +8,7 @@ import utils.RequestUtils;
 import java.io.*;
 import java.net.*;
 
+import java.text.ParseException;
 import java.util.*;
 
 public class Main {
@@ -32,6 +33,7 @@ public class Main {
                 InputStream in = connection.getInputStream();
                 Scanner scanner = new Scanner(in);
                 String result = scanner.nextLine(); //Originally scanner.next()
+
                 WikipediaPage page = ParseUtils.parseJsonToWikipediaPageManual(result);
                 System.out.println("What format do you want your page info to come back in?\n");
                 System.out.println("1) Changelog Viewer");
@@ -44,27 +46,30 @@ public class Main {
                     break;
                 }else if (viewerChoice.contentEquals("1") || viewerChoice.contentEquals("changelog viewer") || viewerChoice.contentEquals("changelog")){
                     System.out.println("Most Recent");
-                    for (int i = 0; i < page.getPageEditors().size(); i++) {
+                    for (int i = 0; i < page.getPageEditorsByTimestamp().size(); i++) {
                         System.out.println("**************");
-                        System.out.println("User: " + page.getPageEditors().get(i).getUser());
-                        System.out.println("Date edited: " + page.getPageEditors().get(i).getTimestamp());
+                        System.out.println("User: " + page.getPageEditorsByTimestamp().get(i).getUser());
+                        System.out.println("Date edited: " + page.getPageEditorsByTimestamp().get(i).getTimestamp());
                     }
                 }else if (viewerChoice.contentEquals("2") || viewerChoice.contentEquals("editor list viewer") || viewerChoice.contentEquals("editor list")){
-                    List<Editor> editors = page.getPageEditors();
+                    List<Editor> editors = page.getPageEditorsByEdits();
                     while (editors.size() > 0){
+                        //First, find the biggest amount of Edits.
                         Editor maxEditor = editors.get(0);
-                        int maxEditorIndex = editors.indexOf(maxEditor);
-                        for (int i = 1; i < editors.size(); i++){
-                            if (editors.get(i).getNumEdits() > maxEditor.getNumEdits()){
+                        for (int i = 1; i < editors.size(); i++) {
+                            if(editors.get(i).getNumEdits() > maxEditor.getNumEdits()){
                                 maxEditor = editors.get(i);
-                                maxEditorIndex = editors.indexOf(maxEditor);
                             }
-                            System.out.println("********************");
-                            System.out.println("User: " + editors.get(i).getUser());
-                            System.out.println("Number of Edits: " + editors.get(i).getNumEdits());
-                            editors.remove(maxEditorIndex);
                         }
+                        //Next, print that Editor
+                        System.out.println("**************");
+                        System.out.println("User: " + maxEditor.getUser());
+                        System.out.println("Number of Edits: " + maxEditor.getNumEdits());
+                        System.out.println("Timestamp: " + maxEditor.getTimestamp());
+                        //Finally, remove that Editor from editors
+                        editors.remove(maxEditor);
                     }
+
                 }else{
                     System.out.println("Error: not a valid choice.");
                 }
@@ -73,6 +78,8 @@ public class Main {
             System.out.println("IO Exception");
         } catch (ParameterIsNotJsonStringException e){
             System.out.println("Parameter Is Not Json String Exception");
+        } catch (ParseException e){
+            System.out.println("Error: parse exception");
         }
     }
 }

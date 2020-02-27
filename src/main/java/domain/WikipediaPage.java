@@ -6,19 +6,22 @@ public class WikipediaPage {
 
     private String pageTitle;
     private int pageId;
-    private List<Editor> pageEditors; //ArrayList > LinkedList
+    private List<Editor> pageEditorsByTimestamp; //ArrayList > LinkedList
+    private List<Editor> pageEditorsByEdits;
     private Redirect redirect;
 
-    public WikipediaPage(String aPageTitle, int aPageId, List<Editor> anEditorList){
+    public WikipediaPage(String aPageTitle, int aPageId, List<Editor> anEditorTimestampList, List<Editor> anEditorEditsList){
         pageTitle = aPageTitle;
         pageId = aPageId;
-        pageEditors = anEditorList;
+        pageEditorsByTimestamp = anEditorTimestampList;
+        pageEditorsByEdits = anEditorEditsList;
     }
 
-    public WikipediaPage(String aPageTitle, int aPageId, List<Editor> anEditorList, Redirect aRedirect){
+    public WikipediaPage(String aPageTitle, int aPageId, List<Editor> anEditorTimestampList, List<Editor> anEditorEditsList, Redirect aRedirect){
         pageTitle = aPageTitle;
         pageId = aPageId;
-        pageEditors = anEditorList;
+        pageEditorsByTimestamp = anEditorTimestampList;
+        pageEditorsByEdits = anEditorEditsList;
         redirect = aRedirect;
     }
 
@@ -30,8 +33,12 @@ public class WikipediaPage {
         return pageId;
     }
 
-    public List<Editor> getPageEditors() {
-        return pageEditors;
+    public List<Editor> getPageEditorsByTimestamp() {
+        return pageEditorsByTimestamp;
+    }
+
+    public List<Editor> getPageEditorsByEdits(){
+        return pageEditorsByEdits;
     }
 
     public Redirect getRedirect() {
@@ -43,7 +50,8 @@ public class WikipediaPage {
         return "WikipediaPage{" +
                 "pageTitle='" + pageTitle + '\'' +
                 ", pageId=" + pageId +
-                ", pageEditors=" + pageEditors +
+                ", pageEditorsByTimestamp=" + pageEditorsByTimestamp +
+                ", pageEditorsByEdits=" + pageEditorsByEdits +
                 ", redirect=" + redirect +
                 '}';
     }
