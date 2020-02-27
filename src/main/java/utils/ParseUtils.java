@@ -32,13 +32,25 @@ public class ParseUtils {
         JsonArray revisionsObject = pageidObject.getAsJsonArray("revisions");
 
         List<Editor> pageEditors = new ArrayList<>();
-        for (int i = 0; i<revisionsObject.size(); i++){
+        for (int i = 0; i<revisionsObject.size(); i++) {
             JsonObject object = revisionsObject.get(i).getAsJsonObject();
             Gson tempGson = new Gson();
             Editor editor = tempGson.fromJson(object, Editor.class);
-            if(pageEditors.add(editor);
-
+            editor.setNumEdits(1);
+            pageEditors.add(editor);
+            for (int j = 0; j < pageEditors.size()-1; j++) {
+                if (pageEditors.get(j).getUser().contentEquals(editor.getUser())){
+                    pageEditors.get(j).setNumEdits(pageEditors.get(j).getNumEdits()+1);
+                }
+            }
         }
+            /*
+            if (pageEditors.contains(editor)){
+                editor.setNumEdits(editor.getNumEdits()+1);
+            }else{
+                pageEditors.add(editor);
+            }
+             */
         if(queryObject.keySet().contains("redirects")){
             JsonArray redirectsArray = queryObject.getAsJsonArray("redirects");
             JsonObject redirectsObject = redirectsArray.get(0).getAsJsonObject();

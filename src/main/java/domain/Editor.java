@@ -13,7 +13,6 @@ public class Editor {
     public Editor(String aUser, String aTimestamp) throws ParseException {
         user = aUser;
         timestamp = parseDate(aTimestamp);
-        this.numEdits = 1;
     }
 
     public Date parseDate(String aDate) throws ParseException {
@@ -31,8 +30,12 @@ public class Editor {
         return timestamp;
     }
 
-    public void addEdit(){
-        this.numEdits += 1;
+    public int getNumEdits() {
+        return numEdits;
+    }
+
+    public void setNumEdits(int numEdits) {
+        this.numEdits = numEdits;
     }
 
     @Override
