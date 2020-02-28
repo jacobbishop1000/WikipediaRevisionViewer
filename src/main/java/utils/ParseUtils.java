@@ -4,6 +4,7 @@ import com.google.gson.*;
 import domain.Editor;
 import domain.Redirect;
 import domain.WikipediaPage;
+import exceptions.PageNotFoundException;
 import exceptions.ParameterIsNotJsonStringException;
 
 import java.text.ParseException;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class ParseUtils {
 
-    public static WikipediaPage parseJsonToWikipediaPageDirect(String jsonString) throws ParameterIsNotJsonStringException{
+    public static WikipediaPage parseJsonToWikipediaPageDirect(String jsonString) throws ParameterIsNotJsonStringException {
         if (!jsonString.startsWith("{")){
             throw new ParameterIsNotJsonStringException();
         }
@@ -21,7 +22,10 @@ public class ParseUtils {
         return tempGson.fromJson(jsonString, WikipediaPage.class);
     }
 
-    public static WikipediaPage parseJsonToWikipediaPageManual(String jsonString) throws ParameterIsNotJsonStringException, ParseException { //What exception does this throw?
+    public static WikipediaPage parseJsonToWikipediaPageManual(String jsonString) throws ParseException, PageNotFoundException {
+        if(jsonString.charAt(2) == 'b'){
+            throw new PageNotFoundException();
+        }
         JsonParser jsonParser = new JsonParser();
         JsonElement rootElement = jsonParser.parse(jsonString);
         JsonObject rootObject = rootElement.getAsJsonObject();
@@ -42,7 +46,6 @@ public class ParseUtils {
             var aTimestamp = object.getAsJsonPrimitive("timestamp").getAsString();
             int numEdits = 1;
             Editor editor = new Editor(aUser, aTimestamp, numEdits);
-            System.out.println(editor.toString());
             pageEditorsTimestamp.add(editor);
 
         }

@@ -1,6 +1,7 @@
 import domain.Editor;
 import domain.WikipediaPage;
 import exceptions.NetworkConnectionFailedException;
+import exceptions.PageNotFoundException;
 import exceptions.ParameterIsNotJsonStringException;
 import utils.ParseUtils;
 import utils.RequestUtils;
@@ -13,35 +14,24 @@ import java.util.*;
 
 public class Main {
 
-    public static void main(String[] args) throws NetworkConnectionFailedException {
+    public static void main(String[] args) {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
-            System.out.println("Welcome to Wikipedia Revision Viewer!");
+            System.out.println("\nWelcome to Wikipedia Revision Viewer!");
             while (true){
-                System.out.println("Please enter the name of the article you want to view or type 'q' to quit: ");
+                System.out.println("\n\nPlease enter the name of the article you want to view or type 'q' to quit: ");
                 String articleName = br.readLine();
                 if (articleName.contentEquals("q")){
                     break;
                 }
-                URL url = new URL("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles="
-                        + articleName
-                        +"&rvprop=timestamp|user&rvlimit=30&redirects"); //This needs to throw a PageNotFoundException
-                RequestUtils urlRequest = new RequestUtils();
-                URLConnection connection = url.openConnection(); //This needs to throw a NetworkConnectionFailedException
-                connection.setRequestProperty("User-Agent",
-                        "Revision Tracker/0.1 (http://www.cs.bsu.edu/; jbishop@bsu.edu)");
-
-                InputStream in = connection.getInputStream();
-                Scanner scanner = new Scanner(in);
-                String result = scanner.nextLine(); //Originally scanner.next()
-
+                String result = RequestUtils.establishConnection(articleName);
                 WikipediaPage page = ParseUtils.parseJsonToWikipediaPageManual(result);
-                System.out.println("What format do you want your page info to come back in?\n");
+                if(page.getRedirect() != null){
+                    System.out.println("\n-->Your search term " + "'" + articleName + "'" +  " was redirected to " + "'" + page.getPageTitle() + "'<--");
+                }
+                System.out.println("\nWhat format do you want your page info to come back in?\n");
                 System.out.println("1) Changelog Viewer");
                 System.out.println("2) Editor List Viewer\n");
                 String viewerChoice = br.readLine().toLowerCase();
-                if(page.getRedirect() != null){
-                    System.out.println("Your search term " + "'" + articleName + "'" +  " was redirected to " + "'" + page.getPageTitle() + "'");
-                }
                 if(viewerChoice.contentEquals("q")){
                     break;
                 }else if (viewerChoice.contentEquals("1") || viewerChoice.contentEquals("changelog viewer") || viewerChoice.contentEquals("changelog")){
@@ -74,12 +64,14 @@ public class Main {
                     System.out.println("Error: not a valid choice.");
                 }
             }
-        } catch (IOException e) {
-            System.out.println("IO Exception");
-        } catch (ParameterIsNotJsonStringException e){
-            System.out.println("Parameter Is Not Json String Exception");
         } catch (ParseException e){
-            System.out.println("Error: parse exception");
+            System.out.println("\nError: Parse Exception");
+        } catch (PageNotFoundException e) {
+            System.out.println("\nError: PageNotFound Exception");
+        } catch (IOException e) {
+            System.out.println("\nIO Exception");
+        } catch (NetworkConnectionFailedException e) {
+            System.out.println("Error: NetworkConnectionFailed Exception");
         }
     }
 }
