@@ -2,18 +2,27 @@ package utilsTest;
 
 import exceptions.PageNotFoundException;
 import exceptions.ParameterIsNotJsonStringException;
+import org.junit.jupiter.api.Test;
 import utils.ParseUtils;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParseUtilsTest {
 
-    @org.junit.jupiter.api.Test
-    void parseJsonToWikipediaPageDirectButNotJsonString() throws ParameterIsNotJsonStringException, PageNotFoundException {
-        assertEquals(null, ParseUtils.parseJsonToWikipediaPageDirect("not a json string!"));
+    @Test
+    void parseJsonToWikipediaPageDirectButNotJsonString() throws ParameterIsNotJsonStringException{
+        String sampleString = "__{something that would normally be a json string}";
+        assertThrows(ParameterIsNotJsonStringException.class, () -> {
+            var resultingWikipediaPage = ParseUtils.parseJsonToWikipediaPageManual(sampleString);
+        });
     }
 
-    @org.junit.jupiter.api.Test
-    void parseJsonToWikipediaPageManual() {
+    @Test
+    void parseJsonToWikipediaPageManualButNotJsonString() throws  ParameterIsNotJsonStringException{
+        String sampleString = "__{something that would normally be a json string}";
+        assertThrows(ParameterIsNotJsonStringException.class, () -> {
+            var resultingWikipediaPage = ParseUtils.parseJsonToWikipediaPageManual(sampleString);
+        });
     }
+
 }
