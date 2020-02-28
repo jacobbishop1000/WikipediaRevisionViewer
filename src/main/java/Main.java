@@ -71,7 +71,7 @@ public class Main {
         } catch (IOException e) {
             System.out.println("\nIO Exception");
         } catch (NetworkConnectionFailedException e) {
-            System.out.println("Error: NetworkConnectionFailed Exception");
+            System.out.println("\nError: NetworkConnectionFailed Exception");
         }
     }
 }

@@ -11,10 +11,12 @@ import java.util.Scanner;
 public class RequestUtils {
 
     public static String establishConnection(String articleName) throws IOException, NetworkConnectionFailedException {
+        articleName = articleName.replaceAll("\\s+","");
         URL url = new URL("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles="
                 + articleName
                 +"&rvprop=timestamp|user&rvlimit=30&redirects");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
         try{
             connection.getInputStream();
         } catch(IOException e){
