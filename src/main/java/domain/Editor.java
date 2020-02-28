@@ -10,13 +10,15 @@ public class Editor {
     private Date timestamp;
     private int numEdits;
 
-    public Editor(String aUser, String aTimestamp) throws ParseException {
+    public Editor(String aUser, String aJsonTimestamp, int aNumEdits) throws ParseException {
         user = aUser;
-        timestamp = parseDate(aTimestamp);
+        timestamp = parseDate(aJsonTimestamp);
+        numEdits = aNumEdits;
     }
 
     public Date parseDate(String aDate) throws ParseException {
-        SimpleDateFormat primitiveDate = new SimpleDateFormat("yyyy-M-ddThh:mm:ssZ");
+        aDate = aDate.replaceAll("T|Z", " ");
+        SimpleDateFormat primitiveDate = new SimpleDateFormat("yyyy-M-dd hh:mm:ss");
         String dateInString = aDate;
         Date date = primitiveDate.parse(dateInString);
         return date;
@@ -38,11 +40,16 @@ public class Editor {
         this.numEdits = numEdits;
     }
 
+    public void addNumEdits(){
+        this.numEdits += 1;
+    }
+
     @Override
     public String toString() {
         return "Editor{" +
                 "user='" + user + '\'' +
                 ", timestamp=" + timestamp +
+                ", numEdits=" + numEdits +
                 '}';
     }
 }
