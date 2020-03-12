@@ -32,7 +32,7 @@ public class WikipediaPageUI extends Application implements EventHandler {
 
     @Override
     public void start(Stage stage) throws Exception {
-        stage.setTitle("Wikipedia Page Viewer");
+        stage.setTitle("Wikipedia Page Editors Viewer");
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();
 
@@ -67,6 +67,9 @@ public class WikipediaPageUI extends Application implements EventHandler {
 
         byEditsGridPane.setPrefSize(width/1.5, height);
         byTimestampGridPane.setPrefSize(width/1.5, height);
+
+        byTimestampGridPane.setAlignment(Pos.CENTER);
+        byEditsGridPane.setAlignment(Pos.CENTER);
 
         ConsoleGridPane.add(byEditsGridPane, 0, 0, 1, ConsoleGridPane.getRowCount());
         ConsoleGridPane.add(byTimestampGridPane, 2, 0, 1, ConsoleGridPane.getRowCount());
