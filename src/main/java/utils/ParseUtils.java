@@ -39,7 +39,7 @@ public class ParseUtils {
         JsonArray revisionsObject = pageidObject.getAsJsonArray("revisions");
 
         List<Editor> pageEditorsTimestamp = new ArrayList<>();
-        List<Editor> pageEditorsEdits = new ArrayList<>();
+        List<Editor> pageEditorsEdits;
         for (int i = 0; i < revisionsObject.size(); i++) {
             JsonObject object = revisionsObject.get(i).getAsJsonObject();
             var aUser = object.getAsJsonPrimitive("user").getAsString();

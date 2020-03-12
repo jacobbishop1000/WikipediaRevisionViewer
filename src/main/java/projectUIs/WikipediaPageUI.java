@@ -4,6 +4,8 @@ import domain.Editor;
 import domain.WikipediaPage;
 import exceptions.NetworkConnectionFailedException;
 import exceptions.PageNotFoundException;
+import javafx.geometry.Rectangle2D;
+import javafx.stage.Screen;
 import utils.RequestUtils;
 import utils.ParseUtils;
 import javafx.application.Application;
@@ -12,10 +14,8 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class WikipediaPageUI extends Application implements EventHandler {
@@ -30,10 +30,20 @@ public class WikipediaPageUI extends Application implements EventHandler {
     @Override
     public void start(Stage stage) throws Exception {
         stage.setTitle("Wikipedia Page Viewer");
+        Screen screen = Screen.getPrimary();
+        Rectangle2D bounds = screen.getVisualBounds();
+
+        double width = bounds.getWidth();
+        double height = bounds.getHeight();
+
+        stage.setX(bounds.getMinX());
+        stage.setY(bounds.getMinY());
+        stage.setWidth(width);
+        stage.setHeight(height);
 
         GridPane ConsoleGridPane = new GridPane();
 
-        articleNameField.setPrefSize(200, 50);
+        articleNameField.setPrefSize(width/2, height/2);
         ConsoleGridPane.add(articleNameField, 1, 0);
 
         Button searchArticleButton = new Button("Search Article");
@@ -57,7 +67,6 @@ public class WikipediaPageUI extends Application implements EventHandler {
 
         ConsoleGridPane.add(byEditsGridPane, 0, 0, 1, 3);
         ConsoleGridPane.add(byTimestampGridPane, 2, 0, 1, 3);
-
 
         Scene Console = new Scene(ConsoleGridPane, 1920, 1080);
         stage.setScene(Console);
